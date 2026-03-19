@@ -17,4 +17,7 @@ jobs:
     needs: test
 
     steps:
-      - run: echo "PR checks passed for branch:${{ github.head_ref }}"
+      - run: |
+            echo "PR checks passed for branch: ${{ github.head_ref }}"
+
+
