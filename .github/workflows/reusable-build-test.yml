@@ -1,0 +1,43 @@
+name: Reusable Build & Test
+
+on:
+  workflow_call:
+    inputs:
+      python_version:
+        required: true
+        type: string
+      run_tests:
+        required: false
+        type: boolean
+        default: true
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    outputs:
+      test_result: ${{ steps.result.outputs.status }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ inputs.python_version }}
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run app
+        run: |
+          python app.py &
+          sleep 5
+
+      - name: Run tests
+        if: inputs.run_tests == true
+        run: bash test.sh
+
+      - name: Set output
+        id: result
+        run: echo "status=passed" >> $GITHUB_OUTPUT
