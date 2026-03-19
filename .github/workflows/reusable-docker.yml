@@ -30,10 +30,10 @@ jobs:
 
       - name: Build & Push
         run: |
-          IMAGE=${{ secrets.docker_username }}/${{ inputs.image_name }}:${{ inputs.tag }}
-          docker build -t $IMAGE:latest -t $IMAGE:${{ inputs.tag }} .
-          docker push $IMAGE:latest
-          docker push $IMAGE:${{ inputs.tag }}
+            docker build -t $IMAGE:latest -t $IMAGE:${{ inputs.tag }} .
+
+            docker push $IMAGE:latest
+            docker push $IMAGE:${{ inputs.tag }}
 
       - name: Set output
         id: meta
