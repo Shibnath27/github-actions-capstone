@@ -35,5 +35,5 @@ jobs:
           docker push $IMAGE
 
       - name: Set output
-        id: meta 
+        id: meta
         run: echo "url=${{ secrets.docker_username }}/${{ inputs.image_name }}:${{ inputs.tag }}" >> $GITHUB_OUTPUT
