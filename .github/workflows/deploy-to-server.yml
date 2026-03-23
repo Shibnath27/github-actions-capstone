@@ -49,8 +49,7 @@ jobs:
                    DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
                    DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
                    GITHUB_SHA: ${{ github.sha }}
-                
-                script: |
+                   script: |
                     echo "Running App"
                  
                     SHORT_SHA=$(echo "$GITHUB_SHA" | cut -c1-7)
