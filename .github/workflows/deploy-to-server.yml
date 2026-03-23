@@ -45,7 +45,7 @@ jobs:
                 key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
                 script: |
                  echo "Running App"
-                 SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-7)
+                 SHORT_SHA=$(echo "$FULL_SHA" | cut -c1-7)
                  export DOCKERHUB_USER=${{ secrets.DOCKERHUB_USER }}
                  export DOCKER_TAG="sha-$SHORT_SHA"
                  echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username ${{ secrets.DOCKERHUB_USER }} --password-stdin
