@@ -5,13 +5,21 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  secrets-scan:
+        uses: ./.github/workflows/secrets-scan.yml
+        secrets: inherit
+  dependency-scan:
+        uses: ./.github/workflows/dependency-scan.yml
+
+  build:
+    needs: [secrets-scan, dependency-scan]
     uses: ./.github/workflows/reusable-build-test.yml
     with:
-      python_version: "3.11"
+      python_version: "3.12"
+    secrets: inherit
 
   docker:
-    needs: test
+    needs: build
     uses: ./.github/workflows/reusable-docker.yml
     with:
       image_name: github-actions-capstone
@@ -19,11 +27,14 @@ jobs:
     secrets:
       docker_username: ${{ secrets.DOCKER_USERNAME }}
       docker_token: ${{ secrets.DOCKER_TOKEN }}
-
+  
+  # Image scan 
+  trivy:
+    needs: [docker]
+    uses: ./.github/workflows/image-scan.yml
+    secrets: inherit
+    
   deploy:
-    needs: docker
-    runs-on: ubuntu-latest
-    environment: production
-
-    steps:
-      - run: echo "Deploying image:${{ needs.docker.outputs.image_url }} to production"
+    needs: trivy
+    uses: ./.github/workflows/deploy-to-server.yml
+    secrets: inherit
