@@ -40,6 +40,10 @@ jobs:
                 
             - name: SSH to Prod server & run the app
               uses: appleboy/ssh-action@v1.0.3
+              env:
+                DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
+                DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+                GITHUB_SHA: ${{ github.sha }}
               with:
                 host: ${{ secrets.EC2_SSH_HOST }}
                 username: ${{ secrets.EC2_SSH_USER }}
@@ -47,11 +51,10 @@ jobs:
                 envs: DOCKERHUB_USER,DOCKERHUB_TOKEN,GITHUB_SHA
                 script: |
                     echo "Running App"
-                 
+                    
                     SHORT_SHA=$(echo "$GITHUB_SHA" | cut -c1-7)
-                    export DOCKER_TAG="sha-$SHORT_SHA"
                     export DOCKERHUB_USER=$DOCKERHUB_USER
-                    export DOCKERHUB_TOKEN=$DOCKERHUB_TOKEN
+                    export DOCKER_TAG="sha-$SHORT_SHA"
                     
                     echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username ${{ secrets.DOCKERHUB_USER }} --password-stdin
                     cd ~/devops && docker compose down && docker compose up -d --build --force-recreate --pull always
