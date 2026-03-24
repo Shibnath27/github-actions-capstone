@@ -62,4 +62,4 @@ jobs:
                   
                   echo "$DOCKERHUB_TOKEN" | docker login --username "$DOCKERHUB_USER" --password-stdin
 
-                  cd ~/devops && docker compose down && docker compose up -d --force-recreate --pull always
+                  cd ~/devops && docker compose down && docker compose up -d --build --force-recreate --pull always
