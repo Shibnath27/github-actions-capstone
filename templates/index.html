@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shibnath Das | DevOps & Cloud Engineer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg1: #0f2027;
+  --bg2: #203a43;
+  --bg3: #2c5364;
+  --glass: rgba(255,255,255,0.08);
+  --border: rgba(255,255,255,0.18);
+  --text: #ffffff;
+  --accent: #00e0ff;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter', sans-serif;
+}
+
+body{
+  background: linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+header{
+  position:fixed;
+  width:100%;
+  top:0;
+  backdrop-filter: blur(12px);
+  background:rgba(0,0,0,0.3);
+  padding:15px 60px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:1000;
+}
+
+header h1{
+  font-size:20px;
+  font-weight:600;
+}
+
+nav a{
+  margin-left:25px;
+  text-decoration:none;
+  color:#fff;
+  font-weight:500;
+  position:relative;
+  transition:0.3s;
+}
+
+nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-5px;
+  width:0%;
+  height:2px;
+  background:var(--accent);
+  transition:0.3s;
+}
+
+nav a:hover::after{
+  width:100%;
+}
+
+section{
+  min-height:100vh;
+  padding:120px 10% 80px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+}
+
+.hero{
+  text-align:center;
+}
+
+.hero h2{
+  font-size:48px;
+  font-weight:700;
+}
+
+.hero span{
+  color:var(--accent);
+}
+
+.hero p{
+  margin-top:20px;
+  font-size:18px;
+  opacity:0.85;
+  max-width:700px;
+}
+
+.btn{
+  margin-top:30px;
+  padding:12px 30px;
+  border-radius:30px;
+  background:var(--glass);
+  backdrop-filter: blur(12px);
+  border:1px solid var(--border);
+  color:white;
+  text-decoration:none;
+  transition:0.3s ease;
+}
+
+.btn:hover{
+  background:var(--accent);
+  color:#000;
+  transform:translateY(-5px);
+  box-shadow:0 10px 25px rgba(0,224,255,0.4);
+}
+
+.glass-card{
+  width:100%;
+  max-width:1100px;
+  padding:40px;
+  border-radius:20px;
+  background:var(--glass);
+  backdrop-filter: blur(15px);
+  border:1px solid var(--border);
+  margin-top:40px;
+  transition:0.4s;
+}
+
+.glass-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 20px 40px rgba(0,0,0,0.4);
+}
+
+.skills-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:25px;
+  margin-top:30px;
+}
+
+.skill-item{
+  padding:20px;
+  border-radius:15px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid var(--border);
+  text-align:center;
+  transition:0.3s;
+}
+
+.skill-item:hover{
+  background:var(--accent);
+  color:#000;
+  transform:scale(1.05);
+}
+
+.project-card{
+  margin-top:25px;
+  padding:25px;
+  border-radius:15px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid var(--border);
+  transition:0.3s;
+}
+
+.project-card:hover{
+  transform:translateY(-5px);
+  background:rgba(0,224,255,0.2);
+}
+
+footer{
+  text-align:center;
+  padding:30px;
+  font-size:14px;
+  opacity:0.7;
+}
+
+.fade{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+
+.fade.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Shibnath Das</h1>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>Hello, I'm <span>Shibnath</span></h2>
+  <p>DevOps & Cloud Engineer focused on building secure, automated and highly available infrastructure. Experienced in virtualization, enterprise storage, networking, and cloud-native systems.</p>
+  <a href="#contact" class="btn">Let's Connect</a>
+</section>
+
+<section id="about">
+  <div class="glass-card fade">
+    <h2>About Me</h2>
+    <p style="margin-top:15px; line-height:1.7;">
+      IT Engineer specializing in DevOps, virtualization, and enterprise infrastructure. 
+      Hands-on experience with Proxmox, Dell PowerVault systems, VLAN configurations, SAN switches, and hybrid cloud deployments. 
+      Passionate about automation, reliability engineering, and building production-ready systems.
+    </p>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="glass-card fade">
+    <h2>Technical Expertise</h2>
+    <div class="skills-grid">
+      <div class="skill-item">Linux Administration</div>
+      <div class="skill-item">Proxmox Virtualization</div>
+      <div class="skill-item">VLAN & Network Config</div>
+      <div class="skill-item">Dell PowerVault Storage</div>
+      <div class="skill-item">Cloud & DevOps</div>
+      <div class="skill-item">Infrastructure Automation</div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="glass-card fade">
+    <h2>Featured Work</h2>
+
+    <div class="project-card">
+      <h3>Enterprise Virtualization Cluster</h3>
+      <p>Designed and deployed high availability Proxmox cluster with shared storage and VLAN segmentation.</p>
+    </div>
+
+    <div class="project-card">
+      <h3>SAN & Storage Deployment</h3>
+      <p>Configured Dell enterprise storage with redundant networking and optimized performance tuning.</p>
+    </div>
+
+    <div class="project-card">
+      <h3>Secure Network Architecture</h3>
+      <p>Implemented VLAN-based segmentation and firewall routing for secure infrastructure design.</p>
+    </div>
+
+  </div>
+</section>
+
+<section id="contact">
+  <div class="glass-card fade">
+    <h2>Get In Touch</h2>
+    <p style="margin-top:15px;">Interested in collaborating or discussing infrastructure architecture?</p>
+    <a href="mailto:your@email.com" class="btn">Send Email</a>
+  </div>
+</section>
+
+<footer>
+  © 2026 Shibnath Das | DevOps & Cloud Engineer
+</footer>
+
+<script>
+const faders = document.querySelectorAll('.fade');
+
+window.addEventListener('scroll', () => {
+  faders.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    if(top < window.innerHeight - 100){
+      el.classList.add('show');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
