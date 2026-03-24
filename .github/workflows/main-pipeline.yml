@@ -38,6 +38,8 @@ jobs:
   trivy:
     needs: [docker]
     uses: ./.github/workflows/image-scan.yml
+    permissions:
+      security-events: write
     secrets: inherit
     
   deploy:
