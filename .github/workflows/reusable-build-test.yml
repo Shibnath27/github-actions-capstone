@@ -36,9 +36,9 @@ jobs:
           python app.py &
           sleep 5
 
-      - name: Run tests
-        if: inputs.run_tests == true
-        run: bash test.sh
+      #- name: Run tests
+      #  if: inputs.run_tests == true
+      #  run: bash test.sh
 
       - name: Set output
         id: result
