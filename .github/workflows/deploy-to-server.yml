@@ -41,8 +41,8 @@ jobs:
             - name: SSH to Prod server & run the app
               uses: appleboy/ssh-action@v1.0.3
               env:
-                DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
-                DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+                DOCKERHUB_USER: ${{  secrets.docker_username }}
+                DOCKERHUB_TOKEN: ${{ secrets.docker_token }}
                 GITHUB_SHA: ${{ github.sha }}
               with:
                 host: ${{ secrets.EC2_SSH_HOST }}
@@ -54,6 +54,9 @@ jobs:
                   export DOCKERHUB_USER="$DOCKERHUB_USER"
                   export DOCKER_TAG="sha-$SHORT_SHA"
 
+                  echo "DOCKERHUB_USER=$DOCKERHUB_USER" > ~/devops/.env
+                  echo "DOCKER_TAG=$DOCKER_TAG" >> ~/devops/.env
+                    
                   echo "Deploying image: $DOCKERHUB_USER/github-actions-capstone:$DOCKER_TAG"
 
                   
