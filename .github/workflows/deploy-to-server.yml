@@ -54,7 +54,7 @@ jobs:
                   export DOCKERHUB_USER="$DOCKERHUB_USER"
                   export DOCKER_TAG="sha-$SHORT_SHA"
 
-                  echo "Deploying image: $DOCKERHUB_USER/github-actions-app:$DOCKER_TAG"
+                  echo "Deploying image: $DOCKERHUB_USER/github-actions-capstone:$DOCKER_TAG"
 
                   
                   echo "$DOCKERHUB_TOKEN" | docker login --username "$DOCKERHUB_USER" --password-stdin
