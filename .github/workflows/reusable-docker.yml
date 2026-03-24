@@ -14,6 +14,8 @@ on:
         required: true
       docker_token:
         required: true
+permissions:
+  contents: read
 
 jobs:
   docker:
@@ -23,7 +25,7 @@ jobs:
       image_url: ${{ steps.meta.outputs.url }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
       - name: Login Docker Hub
         run: echo "${{ secrets.docker_token }}" | docker login -u "${{ secrets.docker_username }}" --password-stdin

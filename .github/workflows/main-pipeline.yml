@@ -3,16 +3,24 @@ name: Main Pipeline
 on:
   push:
     branches: [main]
+permissions:
+  contents: read
 
 jobs:
+  code-quality:
+        uses: ./.github/workflows/code-quality.yml
   secrets-scan:
         uses: ./.github/workflows/secrets-scan.yml
         secrets: inherit
   dependency-scan:
         uses: ./.github/workflows/dependency-scan.yml
+  docker-scan:
+        uses: ./.github/workflows/docker-lint.yml
 
+  tests:
+        uses: ./.github/workflows/tests.yml
   build:
-    needs: [secrets-scan, dependency-scan]
+    needs: [code-quality, secrets-scan, dependency-scan, docker-scan, tests]
     uses: ./.github/workflows/reusable-build-test.yml
     with:
       python_version: "3.12"
@@ -24,9 +32,7 @@ jobs:
     with:
       image_name: github-actions-capstone
       tag: latest
-    secrets:
-      docker_username: ${{ secrets.DOCKER_USERNAME }}
-      docker_token: ${{ secrets.DOCKER_TOKEN }}
+    secrets: inherit
   
   # Image scan 
   trivy:
