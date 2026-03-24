@@ -38,6 +38,7 @@ jobs:
     needs: [docker]
     uses: ./.github/workflows/image-scan.yml
     permissions:
+      contents: read
       security-events: write
     secrets: inherit
     

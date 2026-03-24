@@ -42,11 +42,14 @@ jobs:
 
             - name: Upload Trivy Scan Report
               uses: aquasecurity/trivy-action@master
+              env:
+                TRIVY_USERNAME: ${{ secrets.docker_username }}
+                TRIVY_PASSWORD: ${{ secrets.docker_token }}
               with:
                   image-ref: ${{ steps.meta.outputs.tags }}
                   format: 'sarif'
                   output: 'trivy-results.sarif'
             - name: Upload SARIF Report
-              uses: github/codeql-action/upload-sarif@v3
+              uses: github/codeql-action/upload-sarif@v4
               with:
                   sarif_file: 'trivy-results.sarif'
