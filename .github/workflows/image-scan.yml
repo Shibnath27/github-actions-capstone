@@ -4,7 +4,8 @@ name: Image Scanner
 on: 
     workflow_call:
 permissions:
-  security-events: write
+    contents: read
+    security-events: write
 
 jobs:
     image-scanner:
