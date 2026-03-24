@@ -50,11 +50,13 @@ jobs:
                 key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
                 envs: DOCKERHUB_USER,DOCKERHUB_TOKEN,GITHUB_SHA
                 script: |
-                  echo "Running App"
-
                   SHORT_SHA=$(echo "$GITHUB_SHA" | cut -c1-7)
+                  export DOCKERHUB_USER="$DOCKERHUB_USER"
                   export DOCKER_TAG="sha-$SHORT_SHA"
 
+                  echo "Deploying image: $DOCKERHUB_USER/github-actions-app:$DOCKER_TAG"
+
+                  
                   echo "$DOCKERHUB_TOKEN" | docker login --username "$DOCKERHUB_USER" --password-stdin
 
                   cd ~/devops && docker compose down && docker compose up -d --force-recreate --pull always
